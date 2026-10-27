@@ -20,7 +20,7 @@ export default function Login() {
     if (error) {
       setError(
         error.message === 'Invalid login credentials'
-          ? 'Usuario o contraseña incorrectos.'
+          ? 'Correo o contraseña incorrectos.'
           : 'No se pudo iniciar sesión. Inténtalo de nuevo.',
       )
     }
@@ -32,17 +32,18 @@ export default function Login() {
       <form className="login-card" onSubmit={handleSubmit}>
         <h1>Iniciar sesión</h1>
         <label>
-          <span>Usuario</span>
+          <span>Correo</span>
           <input
-            type="text"
-            autoComplete="username"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
             autoCapitalize="none"
             autoCorrect="off"
             spellCheck={false}
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="tu.usuario"
+            placeholder="tu@correo.com"
           />
         </label>
         <label>
