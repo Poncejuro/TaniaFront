@@ -1,0 +1,508 @@
+:root {
+  /* Paleta perla aqua (de más intenso a más claro) */
+  --pearl-1: #89d8be;
+  --pearl-2: #9ae1ce;
+  --pearl-3: #abeadf;
+  --pearl-4: #bcf3ef;
+  --pearl-5: #cdfcff;
+
+  /* Fondos y texto: claros, sin negro */
+  --bg: #ffffff;
+  --bg-soft: #f4feff;
+  --bg-pearl: #e4fcfc;
+  --line: rgba(137, 216, 190, 0.45);
+  --text: #24504a;
+  --text-dim: #6a908a;
+  --ink: #3f9e88;
+  --on-pearl: #1f4a44;
+
+  /* Brillo nacarado */
+  --sheen: linear-gradient(120deg, var(--pearl-5) 0%, var(--pearl-4) 25%, #ffffff 50%, var(--pearl-3) 75%, var(--pearl-5) 100%);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Gowun Dodum', 'Segoe UI', sans-serif;
+
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { min-height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-soft);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font: inherit; cursor: pointer; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s, background-position 0.6s, box-shadow 0.15s, border-color 0.15s;
+}
+.btn:active { transform: scale(0.97); }
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.btn-primary {
+  background: linear-gradient(120deg, var(--pearl-2), var(--pearl-4) 35%, #ffffff 50%, var(--pearl-4) 65%, var(--pearl-2));
+  background-size: 250% 100%;
+  color: var(--on-pearl);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px -10px rgba(63, 158, 136, 0.55), inset 0 1px 0 #fff;
+}
+.btn-primary:hover {
+  background-position: 100% 0;
+  box-shadow: 0 12px 30px -10px rgba(63, 158, 136, 0.7), inset 0 1px 0 #fff;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { border-color: var(--pearl-1); color: var(--ink); background: #fff; }
+
+.btn-block { width: 100%; }
+
+/* ---------- Marca ---------- */
+.brand-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ---------- Login ---------- */
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(255, 255, 255, 0.95), transparent 40%),
+    radial-gradient(ellipse at 85% 85%, rgba(154, 225, 206, 0.6), transparent 50%),
+    linear-gradient(160deg, var(--pearl-5) 0%, var(--pearl-4) 50%, var(--pearl-3) 100%);
+}
+.login-glow {
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85), transparent 70%);
+  filter: blur(50px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: breathe 7s ease-in-out infinite;
+}
+@keyframes breathe {
+  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.12); }
+}
+.login-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  border: 1px solid #fff;
+  border-radius: 22px;
+  box-shadow: 0 30px 70px -30px rgba(63, 158, 136, 0.5), 0 0 0 6px rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.login-card h1 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  font-weight: 700;
+}
+.login-card label { display: flex; flex-direction: column; gap: 0.4rem; }
+.login-card label span { font-size: 0.85rem; color: var(--text-dim); }
+.login-card input {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.login-card input::placeholder { color: #a3c4be; }
+.login-card input:focus {
+  outline: none;
+  border-color: var(--pearl-1);
+  box-shadow: 0 0 0 4px rgba(154, 225, 206, 0.4);
+}
+.login-card .btn { margin-top: 0.75rem; padding: 0.9rem; }
+.login-note { margin: 0.25rem 0 0; font-size: 0.8rem; color: var(--text-dim); text-align: center; }
+
+/* ---------- Catálogo ---------- */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4vw;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .brand-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+/* Portada dividida: panel perlado con el texto a la izquierda, foto completa a la derecha */
+.hero {
+  position: relative;
+  min-height: clamp(520px, 40vw, 760px);
+  display: flex;
+  align-items: center;
+  padding: 6rem 4vw 6rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 10% 20%, #ffffff, transparent 50%),
+    linear-gradient(160deg, var(--pearl-5) 0%, var(--bg-pearl) 60%, var(--pearl-4) 100%);
+}
+.hero-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64%;
+  /* Alineada a la derecha: recorta primero la sombra gris del borde izquierdo de la foto */
+  background: url('./assets/hero.jpg') right center / cover no-repeat;
+  /* La foto misma se desvanece hacia el panel (sin color encima) */
+  --fade: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.06) 3%,
+    rgba(0, 0, 0, 0.2) 6%,
+    rgba(0, 0, 0, 0.42) 9.5%,
+    rgba(0, 0, 0, 0.65) 13%,
+    rgba(0, 0, 0, 0.84) 16.5%,
+    rgba(0, 0, 0, 0.95) 20%,
+    #000 23%
+  );
+  -webkit-mask-image: var(--fade);
+  mask-image: var(--fade);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 70px;
+  background: var(--bg-soft);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.hero-content { position: relative; z-index: 1; width: 36%; max-width: 520px; }
+.hero-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-title {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--on-pearl);
+  text-shadow: 0 2px 0 #fff, 0 0 30px rgba(154, 225, 206, 0.8);
+}
+.hero-subtitle {
+  margin: 0.4rem 0 1rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
+.match { color: var(--ink); font-weight: 700; }
+.tag {
+  padding: 0.15rem 0.7rem;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-dim);
+}
+.hero-synopsis { margin: 1rem 0 1.5rem; line-height: 1.7; color: var(--text); }
+.hero-actions { display: flex; gap: 0.75rem; }
+
+/* ---------- Episodios ---------- */
+.episodes { padding: 0 4vw 5rem; max-width: 1100px; }
+.episodes-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.75rem;
+}
+.episodes-head h2 { margin: 0; font-family: var(--font-display); font-size: 2rem; }
+.legend { font-size: 0.8rem; color: var(--text-dim); }
+
+.episode-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.episode {
+  display: grid;
+  grid-template-columns: 2.5rem 220px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.1rem 1.25rem 1.1rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px -22px rgba(63, 158, 136, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.episode:hover {
+  transform: translateY(-2px);
+  border-color: var(--pearl-1);
+  box-shadow: 0 18px 40px -20px rgba(63, 158, 136, 0.55);
+}
+.episode-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--pearl-1);
+  text-align: center;
+}
+.episode-thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--sheen);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 8px 20px -12px rgba(63, 158, 136, 0.6);
+}
+.episode-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.episode-thumb span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--ink);
+}
+.episode-body h3 { margin: 0 0 0.35rem; font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; }
+.episode-body p { margin: 0; color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+.episode-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.85rem; }
+
+.btn-quality {
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.btn-quality:hover { border-color: var(--pearl-1); background: var(--bg-soft); }
+.btn-quality-high {
+  background: linear-gradient(120deg, var(--pearl-1), var(--pearl-3) 40%, var(--pearl-5) 55%, var(--pearl-3) 70%, var(--pearl-1));
+  background-size: 250% 100%;
+  color: var(--on-pearl);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+.btn-quality-high:hover {
+  background-position: 100% 0;
+  box-shadow: 0 6px 18px -8px rgba(63, 158, 136, 0.8);
+}
+
+.q {
+  display: inline-block;
+  padding: 0 0.35rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.q-low { border: 1px solid var(--text-dim); color: var(--text-dim); }
+.q-ai {
+  background: linear-gradient(90deg, #ffffff, var(--pearl-4), var(--pearl-2), #ffffff);
+  background-size: 300% 100%;
+  color: var(--on-pearl);
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 0 1px rgba(63, 158, 136, 0.35);
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { to { background-position: 300% 0; } }
+
+/* ---------- Reproductor ---------- */
+.player-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(205, 252, 255, 0.65);
+  backdrop-filter: blur(10px);
+}
+.player {
+  width: min(1000px, 100%);
+  background: var(--bg);
+  border: 1px solid #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px -30px rgba(63, 158, 136, 0.55);
+}
+.player-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+.player-head h2 { margin: 0; font-family: var(--font-display); font-size: 1.6rem; }
+.player-kicker { margin: 0 0 0.2rem; font-size: 0.8rem; color: var(--ink); }
+.player-screen {
+  aspect-ratio: 16 / 9;
+  background: var(--sheen);
+  display: grid;
+  place-items: center;
+}
+.player-screen iframe { width: 100%; height: 100%; border: 0; }
+.player-empty { color: var(--ink); }
+
+/* ---------- Especiales ---------- */
+.episode-special .episode-num { font-size: 1.3rem; letter-spacing: 0.04em; }
+.episode-special { background: linear-gradient(120deg, #ffffff 60%, var(--pearl-5)); }
+
+/* ---------- Responsive ----------
+   Tablet Samsung (Tab S9 ≈ 800×1280 vertical) y S25 Ultra (≈ 412×915).
+   La tablet en horizontal (1280 px) usa el diseño de escritorio. */
+
+/* Muescas y bordes curvos: respeta las zonas seguras de la pantalla */
+.topbar {
+  padding-top: max(1rem, env(safe-area-inset-top));
+  padding-left: max(4vw, env(safe-area-inset-left));
+  padding-right: max(4vw, env(safe-area-inset-right));
+}
+
+/* Tablet vertical y teléfono horizontal: foto arriba, texto debajo */
+@media (max-width: 1100px) {
+  .hero { flex-direction: column; align-items: stretch; padding: 0 0 5rem; min-height: 0; }
+  .hero-bg {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 850 / 553;
+    background-position: center;
+    --fade: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.4) 8%, rgba(0, 0, 0, 0.85) 16%, #000 22%);
+  }
+  .hero-content { width: auto; max-width: 680px; padding: 0 4vw; margin-top: -1rem; }
+  .episodes { max-width: none; }
+  .episode { grid-template-columns: 2.5rem 200px 1fr; }
+}
+
+/* Teléfono (S25 Ultra vertical) */
+@media (max-width: 600px) {
+  .topbar {
+    padding: max(0.6rem, env(safe-area-inset-top)) 1rem 0.6rem;
+  }
+  .topbar .brand-mark { font-size: 1.5rem; }
+  .topbar .btn-ghost { padding: 0.5rem 0.9rem; font-size: 0.85rem; }
+
+  .login-card { padding: 2rem 1.25rem; border-radius: 18px; }
+  .login-card h1 { font-size: 2rem; }
+  /* 16px evita que el navegador haga zoom al escribir */
+  .login-card input { font-size: 16px; padding: 0.9rem 1rem; }
+
+  .hero { padding-bottom: 4.5rem; }
+  .hero-content { padding: 0 1.1rem; }
+  .hero-title { font-size: clamp(2.8rem, 15vw, 3.6rem); }
+  .hero-subtitle { font-size: 1.25rem; }
+  .hero-synopsis { font-size: 0.95rem; line-height: 1.65; }
+  .hero-actions .btn { flex: 1; padding: 0.9rem 1rem; }
+
+  .episodes { padding: 0 0.85rem 4rem; }
+  .episodes-head h2 { font-size: 1.7rem; }
+  .legend { width: 100%; }
+
+  /* Tarjeta vertical: miniatura grande arriba, texto y botones abajo */
+  .episode {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 0.75rem 0.75rem 1rem;
+  }
+  .episode-num { display: none; }
+  .episode-thumb { border-radius: 12px; }
+  .episode-thumb span { font-size: 2.4rem; }
+  .episode-body { padding: 0 0.2rem; }
+  .episode-body h3 { font-size: 1.3rem; }
+  .episode-body p { font-size: 0.92rem; }
+  .episode-actions { gap: 0.5rem; }
+  /* Botones grandes, fáciles de tocar */
+  .btn-quality { flex: 1 1 140px; min-height: 44px; padding: 0.6rem 0.75rem; }
+
+  .player-overlay { padding: 0.5rem; align-items: center; }
+  .player { border-radius: 16px; }
+  .player-head { padding: 0.8rem 1rem; }
+  .player-head h2 { font-size: 1.25rem; }
+}
+
+/* Teléfono horizontal: pantalla muy baja */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-bg { max-height: 80vh; aspect-ratio: auto; height: 80vh; }
+  .login-page { justify-content: flex-start; padding-top: 1.5rem; }
+  /* El video ocupa todo el alto disponible sin salirse */
+  .player { width: min(1000px, calc((100vh - 5.5rem) * 16 / 9)); }
+  .player-head { padding: 0.5rem 1rem; }
+}
+
+/* Pantallas táctiles: sin efectos de hover que se quedan "pegados" */
+@media (hover: none) {
+  .episode:hover { transform: none; box-shadow: 0 10px 30px -22px rgba(63, 158, 136, 0.5); border-color: var(--line); }
+  .btn-primary:hover { transform: none; }
+}
+
+/* ---------- Estados ---------- */
+.splash { min-height: 100vh; background: var(--bg-soft); }
+.login-error,
+.load-error {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: #fff1f1;
+  border: 1px solid #f3c4c4;
+  color: #9b3434;
+  font-size: 0.88rem;
+}
+.load-error { margin-top: 1rem; }
+.btn:disabled { opacity: 0.65; cursor: wait; transform: none; }
