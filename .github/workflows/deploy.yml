@@ -1,5 +1,5 @@
 # Compila el front y lo publica en GitHub Pages en cada push a la rama principal.
-# Requiere en GitHub → Settings → Secrets and variables → Actions → Variables:
+# Requiere en GitHub → Settings → Secrets and variables → Actions (en Variables o en Secrets):
 #   VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
 # y en Settings → Pages → Source: "GitHub Actions".
 name: Deploy a GitHub Pages
@@ -28,10 +28,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Verificar variables de Supabase
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_ANON_KEY" ]; then
+            echo "::error::Faltan VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY en Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL || secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY || secrets.VITE_SUPABASE_ANON_KEY }}
       - run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL || secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY || secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_LOGIN_DOMAIN: ${{ vars.VITE_LOGIN_DOMAIN || 'hola-tania.app' }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
