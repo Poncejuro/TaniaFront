@@ -506,3 +506,17 @@ button { font: inherit; cursor: pointer; }
 }
 .load-error { margin-top: 1rem; }
 .btn:disabled { opacity: 0.65; cursor: wait; transform: none; }
+
+/* ---------- Reproductor: herramientas y pantalla completa ---------- */
+.player-tools { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.player-tools a.btn { text-decoration: none; }
+.player-screen { position: relative; }
+.player-screen:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+  background: #000;
+}
+@media (max-width: 600px) {
+  .player-tool-label { display: none; }
+}
